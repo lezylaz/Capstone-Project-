@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capstone Project — Eliezer (Lazar) Strulovitch</title>
+  <meta name="description" content="EVMC HIPAA‑First LLM audit capstone: SRA, HIPAA standards, BAA, LLM audit draft, LLM‑specific risk assessment, and slides." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --ink: #e5e7eb;
+      --muted: #9aa4b2;
+      --accent: #6366f1;
+      --accent-ink: #ffffff;
+      --shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background: #0b1020;
+      scroll-behavior: smooth;
+    }
+    .container { width: min(960px, 92%); margin: 0 auto; }
+    nav.top {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(6px);
+      background: rgba(9,14,27,.7); border-bottom: 1px solid #1b2440;
+    }
+    nav.top .nav-inner { display:flex; align-items:center; gap:10px; padding: 12px 0; }
+    nav a { color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 8px; }
+    nav a:hover { background: rgba(255,255,255,.08); color: var(--ink); }
+    .badge {
+      display: inline-flex; gap: 10px; align-items: center;
+      font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent-ink); background: var(--accent);
+      border-radius: 999px; padding: 6px 12px; width: fit-content; box-shadow: var(--shadow);
+      margin-top: 20px;
+    }
+    header.hero {
+      padding: 56px 0 24px; display: grid; gap: 14px;
+    }
+    h1 { font-size: clamp(28px, 3vw, 42px); margin: 4px 0 0; line-height: 1.15; }
+    .kicker { color: var(--muted); max-width: 70ch; font-size: 17px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .btn {
+      background: var(--accent); color: var(--accent-ink);
+      padding: 10px 16px; border-radius: 10px; text-decoration: none; font-weight: 600;
+      box-shadow: var(--shadow); transition: transform .12s ease, box-shadow .12s ease;
+      display: inline-flex; gap: 8px; align-items: center;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(99,102,241,.3); }
+    .btn.secondary { background: transparent; color: var(--ink); border: 1px solid #263149; }
+    section { padding: 32px 0 48px; }
+    .section-title { font-size: 22px; margin: 0 0 14px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+      background: rgba(255,255,255,.02);
+      border: 1px solid #27324a; border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 160px;
+    }
+    .card-body { padding: 16px; }
+    .card h3 { margin: 4px 0 6px; font-size: 17px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .card-actions { padding: 0 16px 16px; }
+    .footer {
+      color: var(--muted); font-size: 13px; border-top: 1px solid #1f2941; padding: 22px 0 40px; text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="top">
+    <div class="container nav-inner">
+      <a href="#top"><strong>Capstone</strong></a>
+      <div style="flex:1"></div>
+      <a href="#summary">Summary</a>
+      <a href="#sra">SRA Tool</a>
+      <a href="#audit">LLM Audit Draft</a>
+      <a href="#artifacts">Artifacts</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header id="top" class="hero container">
+    <span class="badge">Capstone Project</span>
+    <h1>Evergreen Valley Medical Center — HIPAA‑First LLM Audit</h1>
+    <p class="kicker">By <strong>Eliezer (Lazar) Strulovitch</strong>. A HIPAA‑first compliance program for an on‑prem LLM: policy mapping, SRA export, audit plan, BAA, and an LLM‑specific risk matrix.</p>
+    <div class="cta-row">
+      <a class="btn" href="#summary">View Summary</a>
+      <a class="btn secondary" href="#artifacts">Open Artifacts</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+    </div>
+  </header>
+
+  <section id="summary">
+    <div class="container">
+      <h2 class="section-title">Executive Summary</h2>
+      <p class="kicker">
+        This Capstone represents a comprehensive HIPAA project completed at the end of my graduate program. The primary goal was to become familiar with HIPAA requirements and to create a framework for conducting an audit. It provides both a risk assessment and an audit plan tailored for the unique risks and compliance needs of deploying an on‑premises large language model in a healthcare environment.
+      </p>
+      <ul class="kicker">
+        <li>Goal: build familiarity with HIPAA safeguards and design an audit framework.</li>
+        <li>Scope: administrative, physical, and technical safeguards mapped to concrete LLM controls.</li>
+        <li>Method: control statements, test procedures, and evidence (configs, logs, and operational artifacts).</li>
+        <li>Data Protection: de‑identification for model context; PHI governed by EHR RBAC/MFA; encryption in transit &amp; at rest.</li>
+        <li>Artifacts: SRA export, HIPAA standards deck, LLM audit draft, BAA, and an LLM‑specific risks assessment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="sra">
+    <div class="container">
+      <h2 class="section-title">What the HHS SRA Tool Provides</h2>
+      <p class="kicker">
+        The HHS Security Risk Assessment (SRA) tool generates a structured, educational risk review for HIPAA: it captures org context, asks section‑by‑section questions, shows best‑practice notes, and rolls up risk ratings by domain. The export becomes evidence for policy maturity, training, access control, encryption, and more—useful baseline context before layering LLM‑specific risks.
+      </p>
+      <p class="kicker">
+        The SRA is informative and comprehensive, but it’s not a guarantee of compliance; it’s an aid that frames threats, controls, and documentation you must maintain and verify.
+      </p>
+    </div>
+  </section>
+
+  <section id="audit">
+    <div class="container">
+      <h2 class="section-title">LLM Audit – Project Draft (Why/What)</h2>
+      <p class="kicker">
+        The draft defines a HIPAA compliance audit for the DeepSeek R1 deployment at EVMC: purpose, scope, audience, and evidence‑gathering steps. It positions the work in the <strong>Third Line of Defence</strong>—independent from build/operate teams—and focuses on verifying safeguards relevant to AI systems (access control, logging, de‑identification workflow, and residual risk). It also clarifies that this is a compliance audit plan, not a replacement for risk analysis or risk management.
+      </p>
+    </div>
+  </section>
+
+  <section id="artifacts">
+    <div class="container">
+      <h2 class="section-title">Artifacts (Click to Open)</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <h3>LLM Audit – Project Draft (PDF)</h3>
+            <p>Audit purpose, scope, third‑line assurance, and procedures.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="LLM audit project dreaft.pdf" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>Capstone Project Summary &amp; Reflections (PDF)</h3>
+            <p>Overview of objectives, scope, lessons learned, and deliverables.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="Coversheet.pdf" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>Security Risk Assessment (SRA) – Detailed Report</h3>
+            <p>HHS SRA export with risk ratings, education notes, and references.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="SRA Report.pdf" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>HIPAA Security Standards (Slides)</h3>
+            <p>Required vs. addressable safeguards; admin/physical/technical.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="HIPAA-Security-Standards (2).pptx" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>EVMC – Patient-Care Open‑Source AI (Slides)</h3>
+            <p>Program narrative and on‑prem LLM architecture.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="Patient-Care Open-Source-AI (3).pptx" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>LLM‑Specific Risks Assessment (PDF)</h3>
+            <p>Matrix of unique LLM risks, controls, and test steps.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="LLM-Specific Risks Assessment.pdf" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>Business Associate Agreement (BAA)</h3>
+            <p>HIPAA-required contract defining PHI safeguards and breach duties.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn" href="BAA agrement .pdf" target="_blank" rel="noopener">Open</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="cta-row">
+        <a class="btn secondary" href="mailto:lazarstrulovitch@gmail.com">Email</a>
+        <a class="btn secondary" href="https://elstrulovitch.com" target="_blank" rel="noopener">Website</a>
+        <a class="btn secondary" href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      © 2025 Eliezer (Lazar) Strulovitch • Evergreen Valley Medical Center • Alexos Security, LLC
+    </div>
+  </footer>
+</body>
+</html>
